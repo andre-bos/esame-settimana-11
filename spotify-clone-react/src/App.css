@@ -149,3 +149,11 @@ ul {
 .card-link:hover {
   opacity: 0.3;
 }
+
+/* MediaPlayer */
+
+.playerControls a img {
+  width: 14px;
+  margin-top: 1rem;
+  filter: brightness(60%);
+}

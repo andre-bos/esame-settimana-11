@@ -21,13 +21,11 @@ export default function Homepage() {
                   </Row>
 
                   <Row className='ms-5 mt-5'>
-                    <CardsRow title='I grandi successi'/>
-                    <CardsRow title='Le tue hit' />
+                    <CardsRow/>
+                    <CardsRow />
                   </Row>
 
-                  <Row style={{backgroundColor: '#282828', height: '130px', maxWidth: '100vw'}} className='fixed-bottom'>
-                      <MediaPlayer />
-                  </Row>
+                  <MediaPlayer />
               </Col>
           </Row>
         </Container>
