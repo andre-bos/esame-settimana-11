@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import logo from '../assets/img/Spotify_Logo.png'
 import {useDispatch, useSelector} from "react-redux"
-import {fetchSearchResults, setSearchQuery} from "../redux/actions/actions";
+import {fetchSearchResults, setLenghtError, setSearchQuery} from "../redux/actions/actions";
 
 export default function Sidebar() {
     const dispatch = useDispatch()
@@ -38,17 +38,21 @@ export default function Sidebar() {
                                 </li>
                                 <InputGroup className="input-group mt-3 px-3">
                                     <input
-                                        onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+                                        onChange={(e) => {
+                                            dispatch(setSearchQuery(e.target.value))
+                                            if(e.target.value.length >= 3) {
+                                                dispatch(fetchSearchResults(queryRicerca))
+                                            } else {
+                                                dispatch(setLenghtError('Devi digitare almeno tre caratteri'))
+                                            }
+                                        }}
                                         type="text"
                                         value={queryRicerca}
                                         className="form-control mb-2" id="searchField"
-                                        placeholder="Search"
+                                        placeholder="Cerca"
                                         aria-label="Search"
                                         aria-describedby="basic-addon2"
                                     />
-                                    <div style={{ marginBottom: "4%" }}>
-                                        <button className="btn btn-outline-secondary btn-sm h-100" type="button" onClick={() => (dispatch(fetchSearchResults(queryRicerca)))}> GO </button>
-                                    </div>
                                 </InputGroup>
                             </ul>
                         </Navbar>

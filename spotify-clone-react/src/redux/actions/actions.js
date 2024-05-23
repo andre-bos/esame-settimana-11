@@ -21,3 +21,8 @@ export const fetchSearchResults = (queryRicerca) => {
         })
     }
 }
+
+export const setLenghtError = (errorContent) => ({
+    type: 'QUERY_LENGHT_ERROR',
+    payload: errorContent
+})

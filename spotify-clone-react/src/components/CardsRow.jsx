@@ -4,21 +4,25 @@ import SingleCard from "./SingleCard";
 import {Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
 
-function CardsRow() {
+function CardsRow({searchQuery, risultatiRicerca}) {
 
-    const risultatiRicerca = useSelector(state => state.searchData.searchResults)
-    console.log(risultatiRicerca)
+    const queryLenghtError = useSelector(state => state.errors.queryLenghtError)
 
     return (
         <>
-        <CardsRowTitle/>
-        <Row className='row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 mb-large'>
-            {risultatiRicerca.data.slice(0, 4).map(
-                (ele, index) => <SingleCard key={index} data={ele} />
-            )}
-        </Row>
+            {searchQuery.length === 0 ? null : 
+                searchQuery.length < 3 ? (
+                    <p className='text-white'>{queryLenghtError}</p>
+                ) : (
+                    <>
+                        <CardsRowTitle />
+                        {risultatiRicerca.data && risultatiRicerca.data.slice(0, 4).map(
+                            (ele, index) => <SingleCard key={index} data={ele} />
+                        )}
+                    </>
+                )
+            }
         </>
     );
 }
-
 export default CardsRow;

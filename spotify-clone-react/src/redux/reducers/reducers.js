@@ -25,4 +25,15 @@ function searchDataReducer(state = '', action) {
     return state
 }
 
-export { preferitiReducer, searchDataReducer };
+function errorsReducer(state = '', action) {
+    switch(action.type) {
+        case 'QUERY_LENGHT_ERROR':
+            return {...state, queryLenghtError: action.payload}
+
+        default: break;
+    }
+
+    return state;
+}
+
+export { preferitiReducer, searchDataReducer, errorsReducer };
